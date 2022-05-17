@@ -7,11 +7,16 @@
 
 - name: add newrelic repository
   ansible.builtin.get_url:
-    url: https://download.newrelic.com/infrastructure_agent/linux/yum/el/8/aarch64/newrelic-infra.repo
+    url: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/8/{{ ansible_architecture }}/newrelic-infra.repo"
     dest: /etc/yum.repos.d/newrelic.repo
     owner: root
     group: root
     mode: 0644
+
+- name: install newrelic-infra
+  ansible.builtin.dnf:
+    name: newrelic-infra
+    state: present
 
 - name: disable newrelic-infra
   ansible.builtin.service: name=newrelic-infra enabled=no

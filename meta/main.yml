@@ -16,3 +16,7 @@ galaxy_info:
   galaxy_tags:
     - escapace
     - newrelic
+
+dependencies:
+  - { role: escapace.epel }
+  - { role: escapace.fedora_releases }
