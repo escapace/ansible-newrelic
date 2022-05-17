@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    newrelic_role_debug: true
+  roles:
+    - role: escapace.newrelic
