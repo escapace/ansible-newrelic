@@ -7,7 +7,7 @@
 
 - name: add newrelic repository
   ansible.builtin.get_url:
-    url: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/8/{{ ansible_architecture }}/newrelic-infra.repo"
+    url: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/9/{{ ansible_architecture }}/newrelic-infra.repo"
     dest: /etc/yum.repos.d/newrelic.repo
     owner: root
     group: root
