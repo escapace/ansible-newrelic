@@ -31,3 +31,13 @@
     owner: root
     group: root
     mode: '0644'
+
+- name: fix newrelic-infra service
+  ansible.builtin.lineinfile:
+    path: /etc/systemd/system/newrelic-infra.service
+    regexp: '^MemoryLimit='
+    line: "MemoryMax=512M"
+    insertafter: '^StartLimitBurst'
+    owner: root
+    group: root
+    mode: '0644'
