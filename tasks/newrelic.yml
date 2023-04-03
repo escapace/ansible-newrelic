@@ -19,7 +19,9 @@
     state: present
 
 - name: disable newrelic-infra
-  ansible.builtin.service: name=newrelic-infra enabled=no
+  ansible.builtin.service:
+    name: newrelic-infra
+    enabled: false
   when: not newrelic_role_debug|bool
 
 - name: fix newrelic-infra service
