@@ -1,5 +1,4 @@
 ---
-
 - name: add newrelic gpg keys
   ansible.builtin.rpm_key:
     state: present
@@ -7,11 +6,11 @@
 
 - name: add newrelic repository
   ansible.builtin.get_url:
-    url: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/9/{{ ansible_architecture }}/newrelic-infra.repo"
+    url: https://download.newrelic.com/infrastructure_agent/linux/yum/el/9/{{ ansible_architecture }}/newrelic-infra.repo
     dest: /etc/yum.repos.d/newrelic.repo
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: install newrelic-infra
   ansible.builtin.dnf:
@@ -27,19 +26,19 @@
 - name: fix newrelic-infra service
   ansible.builtin.lineinfile:
     path: /etc/systemd/system/newrelic-infra.service
-    regexp: '^PIDFile='
-    line: "PIDFile=/run/newrelic-infra/newrelic-infra.pid"
-    insertafter: '^StartLimitBurst'
+    regexp: ^PIDFile=
+    line: PIDFile=/run/newrelic-infra/newrelic-infra.pid
+    insertafter: ^StartLimitBurst
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
 
 - name: fix newrelic-infra service
   ansible.builtin.lineinfile:
     path: /etc/systemd/system/newrelic-infra.service
-    regexp: '^MemoryLimit='
-    line: "MemoryMax=512M"
-    insertafter: '^StartLimitBurst'
+    regexp: ^MemoryLimit=
+    line: MemoryMax=512M
+    insertafter: ^StartLimitBurst
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
